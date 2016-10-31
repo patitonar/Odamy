@@ -33,9 +33,9 @@ We also love markdown. So to create those lessons notes we are using github-mark
 You can customize the design. We are using [Materialize css](http://materializecss.com/). Its pretty nice.   
 
 
-**Autenticación:** 
+**Authentication:** 
 
-We currently support authenticación with Devise. And for email support and sending receipts we are using Mandril. 
+We currently support authentication with Devise. And for email support and sending receipts we are using Mandril. 
 
 **Note:** We will soon make an upgrade to sendgrid. 
 
