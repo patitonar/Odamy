@@ -1,6 +1,6 @@
  > With Odamy you can create and sell your own courses. It's like Udamy but open source. 
 
-<img src="https://camo.githubusercontent.com/fc9b2baa17a25296539edf26efe920652054a99e/687474703a2f2f692e696d6775722e636f6d2f547776565079642e706e67" alt="" data-canonical-src="http://i.imgur.com/TwvVPyd.png" style="max-width:100%;box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);">
+<img src="https://camo.githubusercontent.com/fc9b2baa17a25296539edf26efe920652054a99e/687474703a2f2f692e696d6775722e636f6d2f547776565079642e706e67" alt="" data-canonical-src="https://i.imgur.com/TwvVPyd.png" style="max-width:100%;box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);">
 
 
 ##Features
@@ -9,7 +9,7 @@
 
 You can set your own price for every courses that's created. 
 
-![](http://i.imgur.com/FJc4Whb.png?1)
+![](https://i.imgur.com/FJc4Whb.png?1)
 
 **Wistia:** 
 
@@ -21,7 +21,7 @@ Ejample: https://setih.wistia.com/medias/pz88xvd5uk
 Add **pz88xvd5uk** when creating a course intro or lesson. 
 
 
-![](http://i.imgur.com/EElmXzU.png?1)
+![](https://i.imgur.com/EElmXzU.png?1)
 
 **Markdown:** 
 
@@ -39,13 +39,13 @@ We currently support authenticación with Devise. And for email support and send
 
 **Note:** We will soon make an upgrade to sendgrid. 
 
-![](http://i.imgur.com/BCH66zr.png)
+![](https://i.imgur.com/BCH66zr.png)
 
 **Admin Interface:**
 
 For our admin interface we are using ActiveAdmin. You can easily manage every course and every lesson using sortable tree. 
 
-![](http://i.imgur.com/Kd8qjfA.png)
+![](https://i.imgur.com/Kd8qjfA.png)
 
 
 ## Installing 
