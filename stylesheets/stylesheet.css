@@ -243,3 +243,16 @@ a {
 @media screen and (max-width: 42em) {
   .site-footer {
     font-size: 0.9rem; } }
+.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    color: #e5595a;
+}
+
+.page-header {
+    color: #fff;
+    text-align: center;
+    background-color: #e5595a;
+    background-image: linear-gradient(120deg, #e55959, #e5595a);
+}
