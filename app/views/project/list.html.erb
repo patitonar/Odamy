@@ -1,0 +1,27 @@
+<h3 class="center">My courses</h3>
+<div class="row" data-no-turbolink>
+    <br/>
+    <% if @projects.count > 0 %>
+    <% @projects.each do |project| %>
+    <%= link_to project do %>
+    <div class="col s12 m6 l6">
+        <div class="card">
+            <div class="card-image">
+                <%= image_tag project.image, class:"responsive-img" %>
+            </div>
+            <div class="card-content" style="height: 8em;text-align: center;">
+                <span class="card-title grey-text text-darken-4">
+                <%= project.name %>
+                </span>
+            </div>
+        </div>
+    </div>
+    <% end %>
+    <% end %>
+    <% else %>
+    <div class="center">
+        <h5>Actualmente no estás en cualquier proyecto!</h5>
+        <%= link_to "Mostrar todos los proyectos", root_path, class: "btn btn-primary" %>
+    </div>
+    <% end %>
+</div>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Odamy - Create and Sell Online Courses. </title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+
+	  <%= yield :head %>
+		<%= yield :head2 %>
+		<%= yield :head3 %>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="icon" href="http://i.imgur.com/j71lWTx.png" type="image/x-icon">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	</head>
+	<body <%= yield(:body_attributes) %>>
+
+		<%= render partial: "shared/header" %>
+		<%= render partial: "shared/message" %>
+
+		<main>
+			<div class="container">
+				<%= yield %>
+			</div>
+		</main>
+
+		<%= render partial: "shared/footer" %>
+
+	</body>
+
+	<script>
+		$(".button-collapse").sideNav();
+		$(".dropdown-button").dropdown();
+	</script>
+
+</html>

@@ -1,0 +1,77 @@
+<div class="row" data-no-turbolink>
+
+    <h3 class="center" style="margin-top: -10px;">
+        <a href="#" data-activates="slide-out" class="button-collapse">
+    			<i class="material-icons" style="font-size: 37px;">menu</i>
+    		</a>
+        <%= @task.title %></h3>
+
+    <div class="col l10 offset-l1 s12">
+      <div class="card z-depth-2" style="def">
+            <div id="wistia_<%= @task.video %>"></div>
+            <div class="row" style="margin-bottom: 0px;">
+                <div class="col m6" style="padding: 20px;">
+                    <% if !@prev_task.nil? %>
+                    <%= link_to "Anterior", [@prev_task.project, @prev_task], class: "btn btn-primary" %>
+                    <% else %>
+                    &nbsp;
+                    <% end %>
+                </div>
+                <div class="col m6" style="padding: 20px;">
+                    <% if !@next_task.nil? %>
+                    <span class="right">
+                    <%= link_to "Siguiente", [@next_task.project, @next_task], class: "btn btn-primary" %>
+                    </span>
+                    <% end %>
+                </div>
+            </div>
+            <div class="card-action #32325d-text text-darken-4">
+                <%= markdownify(@task.note) %>
+            </div>
+        </div>
+    </div>
+</div>
+<ul id="slide-out" class="side-nav">
+    <div class="col l4 s12">
+        <div class="card z-depth-2" style="border: 1px solid #ffffff;">
+            <div class="card-content" style="padding: 0px;">
+                <div class="collection" data-no-turbolink="" style="margin-top: 0px;margin-bottom: 0px;">
+                    <% @tasks.each do |task| %>
+                    <% if task.header %>
+                    <div class="collection-item active">
+                        <i class="material-icons" style="float: left;color: #32325d;">view_headline</i>
+                        <p style="margin-top: 2px;margin-left: 35px;color: #32325d;font-weight: 800;">
+                            <%= task.title %>
+                        </p>
+                    </div>
+                    <% else %>
+                    <%= link_to [task.project, task], class: "collection-item" do %>
+                    <i class="material-icons" style="float: left; color: #32325d;">play_circle_filled</i>
+                    <p style="margin-top: 2px;margin-left: 35px;color: #32325d;">
+                        <%= task.title %>
+                    </p>
+                    <% end %>
+                    <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</ul>
+
+<script src="https://fast.wistia.net/static/E-v1.js"></script>
+
+<script>
+    wistiaEmbed = Wistia.embed("<%= @task.video %>", {
+    	videoQuality: "hd-only",
+    	videoFoam: true
+    });
+
+    function setPlaySpeed(speed) {
+    	wistiaEmbed.playbackRate(speed);
+    }
+    // Initialize collapse button
+    $(".button-collapse").sideNav();
+    // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+    //$('.collapsible').collapsible();
+</script>

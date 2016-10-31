@@ -1,0 +1,181 @@
+<% content_for :head do %>
+<title><%= @project.name %> | Odamy </title>
+	<!-- Twitter Card data -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@laurodev">
+	<meta name="twitter:creator" content="@laurodev">
+	<meta name="twitter:title" content="<%= @project.name %>">
+	<meta name="twitter:description" content="<%= @project.content %>">
+	<meta name="twitter:image:src" content="<%= image_url @project.image %>">
+	<!-- Open Graph data -->
+	<meta property="og:site_name" content="Odamy">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="<%= @project.name %>">
+	<meta property="og:description" content="<%= @project.content %>">
+	<meta property="og:image" content="<%= @project.image %>">
+<% end %>
+
+<%= content_for(:body_attributes) do %>data-no-turbolink<% end %>
+
+<div class="col l10 m8 s6 center">
+    <h2 style="padding-bottom: 40px;"><%= @project.name %>
+    </h2>
+</div>
+
+<div class="row">
+		<div class="col m8">
+        <div class="card z-depth-2">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a class="active" href="#about">Course</a></li>
+                        <li class="tab col s3"><a href="#videos">Lessons</a></li>
+                    </ul>
+                </div>
+                <div id="about" class="col s12">
+                    <div class="card-content #32325d-text" style="padding: 0px; margin-right: -1px;">
+												<div class="wistia_responsive_padding" id="wistia_<%= @project.promo %>"></div>
+                    </div>
+										<div class="card-content #32325d-text" id="sub" style="padding: 50px;">
+                        <%= markdownify(@project.content) %>
+                    </div>
+                </div>
+                <div id="videos" class="col s10 offset-s1">
+                    <div class="collection" data-no-turbolink>
+                        <% @tasks.each do |task| %>
+                        <% if task.header %>
+                        <div class="collection-item active">
+                            <i class="material-icons" style="float: left;color: #32325d">view_headline</i>
+                            <p style="margin-top: 2px;margin-left: 35px;color: #32325d;font-weight: 800;">
+                                <%= task.title %>
+                            </p>
+                        </div>
+                        <% else %>
+                        <%= link_to [task.project, task], class: "collection-item" do %>
+                        <i class="material-icons" style="float: left; color: #32325d; margin-top: 9px;">play_circle_filled</i>
+                        <p style="margin-top: 10px;margin-left: 35px;">
+                            <%= task.title %>
+                        </p>
+                        <% end %>
+                        <% end %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+		<div class="col m4 s12">
+        <div class="card z-depth-2">
+            <% if !@joined %>
+            <div class="center">
+                <h3><%= @project.price == 0? "Free" : "$#{@project.price} usd" %></h3>
+            </div>
+            <div class="card-action center">
+                <% if user_signed_in? %>
+                <% if @project.price == 0 %>
+                <%= form_tag free_path do %>
+                <%= hidden_field_tag 'project_id', @project.id %>
+                <button type="submit" class="btn pink darken-2">Start course</button>
+                <% end %>
+                <% else %>
+                <%= form_tag pay_path, id:'chargeForm' do %>
+                <script src="https://checkout.stripe.com/checkout.js"></script>
+                <%= hidden_field_tag 'stripeToken' %>
+                <%= hidden_field_tag 'stripeEmail' %>
+                <%= hidden_field_tag 'project_id', @project.id %>
+                <button id="btn-buy" type="button" class="btn pink darken-2">Start course</button><br/>
+                <script>
+                    var handler = StripeCheckout.configure({
+                      key: '<%= ENV['STRIPE_PUBLIC_KEY'] %>',
+                      token: function(token, arg) {
+                        $('#stripeToken').val(token.id);
+                        $('#stripeEmail').val(token.email);
+                        $('#chargeForm').submit();
+                      }
+                    });
+
+                    $('#btn-buy').on('click', function(e) {
+                      handler.open({
+                        name: 'Odamy',
+                        description: '<%= @project.name %>',
+                        amount: '<%= @project.price_in_cents %>',
+                        email: '<%= current_user.email %>'
+                      })
+                      e.preventDefault();
+                    });
+                </script>
+                <% end %>
+                <% end %>
+                <% else %>
+                <%= link_to new_user_session_path do %>
+                <button type="submit" class="btn pink darken-2">Start course</button>
+                <% end %>
+                <% end %>
+                <div class="col-lg-12">
+                    <div class="row" style="margin-bottom: -60px; margin-top: 20px">
+                        <div class="col m4" style="padding-top: 13px; padding-left: 20px; float: left;">
+                            <i class="material-icons">code</i>
+                        </div>
+                        <div class="col m8 s12" style="margin-left: -65px;padding-top: 1px;">
+                            <p>Benefit #1 </p>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: -60px;">
+                        <div class="col m4" style="padding-top: 13px; padding-left: 20px; float: left;">
+                            <i class="material-icons">forum</i>
+                        </div>
+                        <div class="col m8 s12" style="margin-left: -65px;padding-top: 1px;">
+                            <p>Benefit #2</p>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col m4" style="padding-top: 13px; padding-left: 20px; float: left;">
+                            <i class="material-icons">today</i>
+                        </div>
+                        <div class="col m8 s12" style="margin-left: -65px;padding-top: 1px;">
+                            <p>Benefit #3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% else %>
+            <div class="card-content center">
+                <%= image_tag avatar_url(current_user), class: "circle responsive-img avatar-medium" %><br/>
+                <h5><%= current_user.name %></h5>
+            </div>
+            <% end %>
+            <hr>
+            <div class="card-content center" style="padding-bottom: 160px;">
+                <h3 class="text-center">Students</h3>
+                <ul class="nav nav-pills learners card-content center">
+                    <% @users.each do |u| %>
+                    <li>
+                        <%= image_tag avatar_url(u), class: "circle responsive-img avatar-small" %>&nbsp;
+                    </li>
+                    <% end %>
+                    <li style="padding-top: 10px; padding-left: 10px;"><button class="ot-btn-cirle ot-btn-cirle-medium" disabled="">+</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://fast.wistia.net/static/E-v1.js"></script>
+
+<script>
+    wistiaEmbed = Wistia.embed("<%= @project.promo %>", {
+    	videoQuality: "hd-only",
+    	videoFoam: true
+    });
+
+    function setPlaySpeed(speed) {
+    	wistiaEmbed.playbackRate(speed);
+    }
+    // Initialize collapse button
+    $(".button-collapse").sideNav();
+    // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+    //$('.collapsible').collapsible();
+</script>

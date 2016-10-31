@@ -1,0 +1,88 @@
+@import "active_admin/mixins";
+@import "active_admin/base";
+
+$skinLogo: none;
+
+@import "active_skin";
+
+#title_bar {
+    background: #258cff;
+}
+
+body.active_admin {
+    background: #ffffff;
+}
+#header {
+    background: #258cff;
+}
+#header a, #header a:link {
+    color: #ffffff;
+}
+#header ul.tabs > li:hover > a, #header ul.tabs > li.current > a {
+    color: #fff;
+    background: #51D696;
+    border-radius: 0;
+    margin: -10px 0;
+}
+#title_bar {
+    text-shadow: none;
+    border: none;
+    padding: 15px 30px;
+    box-shadow: none;
+    border-bottom: 4px solid #51D696;
+    margin: 0;
+}
+html {
+    background: #ffffff;
+    font-family: "Source Sans Pro", sans-serif;
+}
+.breadcrumb a, .breadcrumb a:link, .breadcrumb a:visited, .breadcrumb a:active {
+    color: #ffffff;
+    text-decoration: none;
+}
+#header #utility_nav {
+    background: #258cff;
+    padding: 0;
+}
+#title_bar .action_items a > a, #title_bar .action_items a > .dropdown_menu > a, #title_bar .action_items span.action_item > a, #title_bar .action_items span.action_item > .dropdown_menu > a {
+    border-radius: 0;
+    background: #51d696;
+    color: #fff;
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
+    padding: 17px;
+    font-size: 14px;
+}
+.sidebar_section.panel > h3 {
+    background: #51d696;
+    color: #FFFFFF;
+    border: none;
+    margin: 0;
+    padding: 8px 15px;
+    box-shadow: none;
+    border-radius: 0;
+    text-shadow: none;
+    font-weight: bold;
+}
+form input[type=submit], a.button, a:link.button, a:visited.button {
+    box-shadow: none;
+    border-radius: 0;
+    background: #51d696;
+    color: #fff;
+    border: none;
+    text-shadow: none;
+    padding: 11px 20px;
+}
+#active_admin_content .table_tools_segmented_control li.selected a {
+    color: #fff;
+    background-color: #51d696;
+}
+.download_links a {
+    color: #51d696;
+    font-weight: bold;
+}
+table.index_table td a:hover, table.index_table td a:link:hover, table.index_table td a:visited:hover {
+    color: #fff;
+    background: #51d696;
+}

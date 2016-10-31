@@ -1,0 +1,46 @@
+
+<header style="margin-bottom: 3em;">
+    <!-- Dropdown Structure -->
+    <ul id="dropdown1" class="dropdown-content mask">
+        <li><%= link_to "New account", edit_user_registration_path %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+    </ul>
+    <ul id="dropdown2" class="dropdown-content mask">
+        <li><%= link_to "My account", edit_user_registration_path %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+    </ul>
+    <nav class="light-red darken-1 z-depth-2">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo" style="padding-top: 4px;">Odamy</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <% if(!user_signed_in?) %>
+                    <li style="padding-top: 4px;"><%= link_to "New account", new_user_registration_path %></li>
+                    <li style="padding-top: 4px;"><%= link_to "Login", new_user_session_path %></li>
+                    <% else%>
+                    <!-- Dropdown Trigger -->
+                    <li style="padding-top: 4px;"><%= link_to "My courses", myprojects_path %></li>
+                    <li><a class="dropdown-button valign-wrapper" href="#!" data-activates="dropdown1">
+                        <%= image_tag avatar_url(current_user), class: "circle responsive-img avatar-small" %>&nbsp;
+                        <%= current_user.name %><i class="mdi-navigation-arrow-drop-down right"></i></a>
+                    </li>
+                    <% end %>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <% if(!user_signed_in?) %>
+                    <li><%= link_to "New account", new_user_registration_path %></li>
+                    <li><%= link_to "Login", new_user_session_path %></li>
+                    <% else%>
+                    <!-- Dropdown Trigger -->
+                    <li style="padding-top: 4px;"><%= link_to "My courses", myprojects_path %></li>
+                    <li><a class="dropdown-button valign-wrapper" href="#!" data-activates="dropdown2">
+                        <%= image_tag avatar_url(current_user), class: "circle responsive-img avatar-small" %>&nbsp;
+                        </a>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
