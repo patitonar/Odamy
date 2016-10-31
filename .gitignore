@@ -18,3 +18,6 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore DS_Store
+.DS_Store
